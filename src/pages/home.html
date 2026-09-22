@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vitta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/home.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-header__logo" href="/" aria-label="Vitta">
+      <!-- TODO: substituir pelo logo SVG original -->
+      <span class="logo-placeholder" aria-hidden="true">Vitta</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Navegação principal">
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#modalidades">Modalidades</a>
+      <a href="#planos">Planos</a>
+      <a href="#parceiros">Parceiros</a>
+      <a href="#seja-parceiro">Seja Parceiro</a>
+    </nav>
+
+    <div class="site-header__actions">
+      <a class="site-header__login" href="#entrar">Entrar</a>
+      <a class="button button--primary button--header" href="#planos">COMEÇAR AGORA</a>
+    </div>
+
+    <button
+      class="site-header__menu-button"
+      type="button"
+      aria-label="Abrir menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <img
+        class="site-header__menu-icon site-header__menu-icon--open"
+        src="../../public/assets/icons/menu-abrir.svg"
+        alt=""
+        aria-hidden="true"
+      >
+      <img
+        class="site-header__menu-icon site-header__menu-icon--close"
+        src="../../public/assets/icons/menu-fechar.svg"
+        alt=""
+        aria-hidden="true"
+      >
+    </button>
+  </header>
+
+  <nav id="mobile-menu" class="mobile-menu" aria-label="Navegação mobile" aria-hidden="true">
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#modalidades">Modalidades</a>
+    <a href="#planos">Planos</a>
+    <a href="#parceiros">Parceiros</a>
+    <a href="#seja-parceiro">Seja Parceiro</a>
+  </nav>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__background" aria-hidden="true">
+        <!-- TODO: inserir o asset original da logo. -->
+        <div class="hero__background-mark"></div>
+        <div class="hero__grid"></div>
+      </div>
+
+      <div class="hero__content">
+        <div class="hero__accent" aria-hidden="true"></div>
+
+        <p class="hero__eyebrow">● &nbsp; BEM-ESTAR SEM VÍNCULO</p>
+
+        <h1 id="hero-title" class="hero__title">
+          <span>SUA SAÚDE</span>
+          <span>SUAS ESCOLHAS</span>
+          <span class="hero__title-outline">SUA VITTA</span>
+        </h1>
+
+        <p class="hero__description">
+          Academias, esportes e bem-estar em uma única
+          assinatura. Sem depender da empresa onde você
+          trabalha.
+        </p>
+
+        <div class="hero__actions">
+          <a class="button button--primary" href="#planos">
+            CONHEÇA OS PLANOS <span aria-hidden="true">→</span>
+          </a>
+          <a class="button button--secondary" href="#parceiros">
+            EXPLORAR PARCEIROS
+          </a>
+        </div>
+
+        <div class="hero__stats" aria-label="Indicadores">
+          <div class="hero-stat">
+            <strong>+500</strong>
+            <span>PARCEIROS</span>
+          </div>
+          <div class="hero-stat">
+            <strong>+60</strong>
+            <span>MODALIDADES</span>
+          </div>
+          <div class="hero-stat">
+            <strong>5</strong>
+            <span>PLANOS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="../scripts/main.js"></script>
+</body>
+</html>
