@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles/global.css">
   <link rel="stylesheet" href="../styles/home.css">
+  <link rel="stylesheet" href="../sections/hero/hero.css">
 </head>
 <body>
   <header class="site-header">
@@ -61,55 +62,16 @@
   </nav>
 
   <main>
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero__background" aria-hidden="true">
-        <!-- TODO: inserir o asset original da logo. -->
-        <div class="hero__background-mark"></div>
-        <div class="hero__grid"></div>
-      </div>
+    <!-- A Home apenas organiza as seções. -->
+    <div data-section="hero"></div>
 
-      <div class="hero__content">
-        <div class="hero__accent" aria-hidden="true"></div>
-
-        <p class="hero__eyebrow">● &nbsp; BEM-ESTAR SEM VÍNCULO</p>
-
-        <h1 id="hero-title" class="hero__title">
-          <span>SUA SAÚDE</span>
-          <span>SUAS ESCOLHAS</span>
-          <span class="hero__title-outline">SUA VITTA</span>
-        </h1>
-
-        <p class="hero__description">
-          Academias, esportes e bem-estar em uma única
-          assinatura. Sem depender da empresa onde você
-          trabalha.
-        </p>
-
-        <div class="hero__actions">
-          <a class="button button--primary" href="#planos">
-            CONHEÇA OS PLANOS <span aria-hidden="true">→</span>
-          </a>
-          <a class="button button--secondary" href="#parceiros">
-            EXPLORAR PARCEIROS
-          </a>
-        </div>
-
-        <div class="hero__stats" aria-label="Indicadores">
-          <div class="hero-stat">
-            <strong>+500</strong>
-            <span>PARCEIROS</span>
-          </div>
-          <div class="hero-stat">
-            <strong>+60</strong>
-            <span>MODALIDADES</span>
-          </div>
-          <div class="hero-stat">
-            <strong>5</strong>
-            <span>PLANOS</span>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Próximas seções serão adicionadas aqui. -->
+    <!--
+    <div data-section="como-funciona"></div>
+    <div data-section="modalidades"></div>
+    <div data-section="planos"></div>
+    <div data-section="parceiros"></div>
+    -->
   </main>
 
   <script type="module" src="../scripts/main.js"></script>

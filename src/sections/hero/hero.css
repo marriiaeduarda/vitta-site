@@ -1,0 +1,195 @@
+.hero {
+  position: relative;
+  min-height: 778px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 72% 32%, rgba(26, 42, 62, 0.38), transparent 31%),
+    linear-gradient(180deg, #090c0f 0%, #080b0e 52%, #07090b 100%);
+}
+
+.hero__background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero__background::before {
+  content: "";
+  position: absolute;
+  inset: 68px 0 auto;
+  height: 190px;
+  background: linear-gradient(90deg, transparent, rgba(30, 48, 70, 0.16), transparent);
+  opacity: 0.65;
+}
+
+/*
+ * TODO: substituir pela arte original do felino quando fornecida.
+ * O elemento permanece propositalmente vazio para não inventar uma arte.
+ */
+.hero__background-mark {
+  position: absolute;
+  width: min(58vw, 680px);
+  height: min(34vw, 390px);
+  right: 2%;
+  top: 29%;
+  opacity: 0.16;
+}
+
+.hero__grid {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -3%;
+  height: 235px;
+  transform: perspective(340px) rotateX(58deg);
+  transform-origin: bottom;
+  background-image:
+    linear-gradient(rgba(53, 107, 184, 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(53, 107, 184, 0.22) 1px, transparent 1px);
+  background-size: 100% 29px, 48px 100%;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 32%);
+  mask-image: linear-gradient(to bottom, transparent, #000 32%);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  width: min(var(--content-width), calc(100% - 48px));
+  margin: 0 auto;
+  padding-top: 100px;
+}
+
+.hero__accent {
+  width: 145px;
+  height: 1px;
+  margin-bottom: 31px;
+  background: #4179bd;
+}
+
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  height: 23px;
+  margin: 0 0 23px;
+  padding: 0 11px;
+  border: 1px solid #315e95;
+  border-radius: 999px;
+  color: #5485bf;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.hero__title {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(55px, 7vw, 89px);
+  font-weight: 900;
+  line-height: 0.93;
+  letter-spacing: -4px;
+}
+
+.hero__title span {
+  display: block;
+}
+
+.hero__title-outline {
+  color: transparent;
+  -webkit-text-stroke: 2px #3970b8;
+  text-stroke: 2px #3970b8;
+}
+
+.hero__description {
+  max-width: 370px;
+  margin: 27px 0;
+  color: #7e8287;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 9px;
+}
+
+.hero__stats {
+  display: flex;
+  gap: 31px;
+  margin-top: 64px;
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hero-stat strong {
+  color: #4d7fc2;
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.hero-stat span {
+  color: #5d6268;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: 720px;
+  }
+
+  .hero__content {
+    padding-top: 100px;
+  }
+
+  .hero__title {
+    font-size: clamp(48px, 9vw, 76px);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 760px;
+  }
+
+  .hero__content {
+    width: calc(100% - 40px);
+    padding-top: 105px;
+  }
+
+  .hero__accent {
+    width: 110px;
+  }
+
+  .hero__title {
+    font-size: clamp(43px, 13vw, 64px);
+    letter-spacing: -2.5px;
+  }
+
+  .hero__title-outline {
+    -webkit-text-stroke-width: 1.5px;
+  }
+
+  .hero__description {
+    max-width: 330px;
+    font-size: 14px;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero__stats {
+    margin-top: 50px;
+  }
+}

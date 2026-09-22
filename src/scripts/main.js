@@ -1,46 +1,63 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const menuButton = document.querySelector(".mobile-menu-button");
-    const menuIcon = menuButton?.querySelector("img");
-    const mobileMenu = document.querySelector(".mobile-menu");
-    const mobileMenuLinks = document.querySelectorAll(".mobile-menu a");
+const siteHeader = document.querySelector('.site-header');
+const menuButton = document.querySelector('.site-header__menu-button');
+const mobileMenu = document.querySelector('#mobile-menu');
+const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
 
-    if (!menuButton || !menuIcon || !mobileMenu) {
-        return;
-    }
+const setScrolledHeader = () => {
+  siteHeader?.classList.toggle('is-scrolled', window.scrollY > 0);
+};
 
-    const openMenu = () => {
-        mobileMenu.classList.add("is-open");
-        menuButton.setAttribute("aria-expanded", "true");
-        menuIcon.src = "./assets/icons/menu-fechar.svg";
-        menuIcon.alt = "Fechar menu";
-    };
+const setMobileMenuState = (isOpen) => {
+  siteHeader?.classList.toggle('is-menu-open', isOpen);
+  mobileMenu?.classList.toggle('is-open', isOpen);
 
-    const closeMenu = () => {
-        mobileMenu.classList.remove("is-open");
-        menuButton.setAttribute("aria-expanded", "false");
-        menuIcon.src = "./assets/icons/menu-abrir.svg";
-        menuIcon.alt = "Abrir menu";
-    };
+  menuButton?.setAttribute('aria-expanded', String(isOpen));
+  menuButton?.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+  mobileMenu?.setAttribute('aria-hidden', String(!isOpen));
+  document.body.classList.toggle('menu-open', isOpen);
+};
 
-    menuButton.addEventListener("click", () => {
-        const isOpen = mobileMenu.classList.contains("is-open");
+const loadSections = async () => {
+  const sectionContainers = document.querySelectorAll('[data-section]');
 
-        if (isOpen) {
-            closeMenu();
-        } else {
-            openMenu();
+  await Promise.all(
+    [...sectionContainers].map(async (container) => {
+      const sectionName = container.dataset.section;
+      const sectionPath = `../sections/${sectionName}/${sectionName}.html`;
+
+      try {
+        const response = await fetch(sectionPath);
+
+        if (!response.ok) {
+          throw new Error(`Não foi possível carregar a seção: ${sectionName}`);
         }
-    });
 
-    mobileMenuLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-            closeMenu();
-        });
-    });
+        container.innerHTML = await response.text();
+      } catch (error) {
+        console.error(error);
+      }
+    })
+  );
+};
 
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-            closeMenu();
-        }
-    });
+menuButton?.addEventListener('click', () => {
+  const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+  setMobileMenuState(!isOpen);
 });
+
+mobileMenuLinks?.forEach((link) => {
+  link.addEventListener('click', () => {
+    setMobileMenuState(false);
+  });
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    setMobileMenuState(false);
+  }
+});
+
+window.addEventListener('scroll', setScrolledHeader, { passive: true });
+
+setScrolledHeader();
+loadSections();
