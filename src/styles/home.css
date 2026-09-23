@@ -114,6 +114,19 @@
   display: flex;
 }
 
+.mobile-menu-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.mobile-menu-actions {
+    width: 100%;
+}
+
 .site-header.is-menu-open .site-header__menu-icon--open {
   display: none;
 }

@@ -35,22 +35,6 @@
   opacity: 0.16;
 }
 
-.hero__grid {
-  position: absolute;
-  left: -10%;
-  right: -10%;
-  bottom: -3%;
-  height: 235px;
-  transform: perspective(340px) rotateX(58deg);
-  transform-origin: bottom;
-  background-image:
-    linear-gradient(rgba(53, 107, 184, 0.22) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(53, 107, 184, 0.22) 1px, transparent 1px);
-  background-size: 100% 29px, 48px 100%;
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 32%);
-  mask-image: linear-gradient(to bottom, transparent, #000 32%);
-}
-
 .hero__content {
   position: relative;
   z-index: 1;

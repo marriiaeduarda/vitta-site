@@ -1,0 +1,264 @@
+.planos {
+  background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-background) 55%);
+  padding: 96px 0;
+}
+
+.planos__container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.planos__intro {
+  text-align: center;
+}
+
+.planos__eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 0 20px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.planos__eyebrow-line {
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-primary-light);
+}
+
+.planos__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height: 1.15;
+  color: var(--color-text);
+}
+
+.planos__title-line {
+  display: block;
+}
+
+.planos__title-line--highlight {
+  color: var(--color-primary-light);
+}
+
+.planos__list {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  margin: 48px 0 0;
+  padding: 0 24px;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-padding: 0 24px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.planos__list::-webkit-scrollbar {
+  display: none;
+}
+
+.planos-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 260px;
+  scroll-snap-align: start;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: var(--color-surface);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.planos-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .planos-card {
+    transition: none;
+  }
+}
+
+.planos-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px 22px 28px;
+}
+
+.planos-card--featured {
+  border-color: var(--color-primary-light);
+  background: rgba(53, 107, 184, 0.1);
+  box-shadow: 0 8px 24px rgba(53, 107, 184, 0.22);
+}
+
+.planos-card__ribbon {
+  margin: 0;
+  padding: 8px 22px;
+  background: var(--color-primary);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.planos-card__badge {
+  display: inline-flex;
+  padding: 6px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.planos-card--featured .planos-card__badge {
+  border-color: var(--color-primary-light);
+  color: var(--color-primary-light);
+}
+
+.planos-card__description {
+  margin: 0;
+  min-height: 40px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.planos-card__price {
+  margin: 4px 0 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 30px;
+  color: var(--color-text);
+}
+
+.planos-card__price-suffix {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.planos-card__features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.planos-card__feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--color-text);
+}
+
+.planos-card__feature-icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.planos-card__more {
+  margin: -2px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-primary-light);
+}
+
+.planos-card__extras {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin: 8px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+.planos-card__extra-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.planos-card__extra-row dt {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.planos-card__extra-row dd {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: right;
+  color: var(--color-text);
+}
+
+.planos-card__extra-highlight {
+  color: var(--color-primary-light);
+}
+
+.planos-card__cta {
+  width: 100%;
+  margin-top: auto;
+}
+
+.planos__scroll-hint {
+  display: block;
+  margin: 20px 0 0;
+  font-size: 13px;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+/* --- A partir daqui, os 5 planos cabem sem precisar de scroll --- */
+
+@media (min-width: 1200px) {
+  .planos__list {
+    justify-content: center;
+    overflow-x: visible;
+    padding: 0;
+  }
+
+  .planos-card {
+    flex: 1 1 0;
+    max-width: 225px;
+  }
+
+  .planos__scroll-hint {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .planos {
+    padding: 72px 0;
+  }
+}
