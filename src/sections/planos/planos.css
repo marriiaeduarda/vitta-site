@@ -1,4 +1,6 @@
 .planos {
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-background) 55%);
   padding: 96px 0;
 }
@@ -228,6 +230,7 @@
 .planos-card__cta {
   width: 100%;
   margin-top: auto;
+  color: var(--color-text)
 }
 
 .planos__scroll-hint {

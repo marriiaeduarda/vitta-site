@@ -6,11 +6,12 @@
   --color-primary: #356bb8;
   --color-primary-light: #5b91dc;
   --color-border: #26384f;
+  --color-danger: #e15252;
 
   --font-display: "Archivo", Arial, sans-serif;
   --font-body: "Inter", Arial, sans-serif;
 
-  --content-width: 760px;
+  --content-width: 900px;
   --header-height: 68px;
 }
 

@@ -1,0 +1,158 @@
+.saude-integral {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-background) 55%);
+  padding: 96px 24px;
+}
+
+.saude-integral__container {
+  position: relative;
+  z-index: 1;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.saude-integral__intro {
+  text-align: center;
+}
+
+.saude-integral__eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 0 20px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.saude-integral__eyebrow-line {
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-primary-light);
+}
+
+.saude-integral__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height: 1.15;
+  color: var(--color-text);
+}
+
+.saude-integral__title-line {
+  display: block;
+}
+
+.saude-integral__title-line--highlight {
+  color: var(--color-primary-light);
+}
+
+.saude-integral__subtitle {
+  max-width: 520px;
+  margin: 20px auto 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.saude-integral__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin: 48px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.saude-integral-card {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: var(--color-surface);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.saude-integral-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .saude-integral-card {
+    transition: none;
+  }
+}
+
+.saude-integral-card__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 10 / 3;
+  object-fit: cover;
+}
+
+.saude-integral-card__body {
+  padding: 24px 28px 28px;
+}
+
+.saude-integral-card__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.saude-integral-card__icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+}
+
+.saude-integral-card__label {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-primary-light);
+}
+
+.saude-integral-card__description {
+  margin: 16px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.saude-integral-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.saude-integral-card__tag {
+  padding: 6px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-primary-light);
+}
+
+@media (max-width: 800px) {
+  .saude-integral {
+    padding: 72px 20px;
+  }
+
+  .saude-integral__grid {
+    grid-template-columns: 1fr;
+  }
+}

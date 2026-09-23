@@ -22,17 +22,18 @@
   opacity: 0.65;
 }
 
-/*
- * TODO: substituir pela arte original do felino quando fornecida.
- * O elemento permanece propositalmente vazio para não inventar uma arte.
- */
 .hero__background-mark {
   position: absolute;
   width: min(58vw, 680px);
-  height: min(34vw, 390px);
-  right: 2%;
+  right: 10%;
   top: 29%;
-  opacity: 0.16;
+  opacity: 0.05;
+}
+
+.hero__background-mark img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .hero__content {
@@ -65,8 +66,8 @@
 }
 
 .hero__title {
-  display: flex;
-  flex-direction: column;
+  display: block;
+  width: 100%;
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(55px, 7vw, 89px);

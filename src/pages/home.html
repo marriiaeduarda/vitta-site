@@ -14,12 +14,18 @@
   <link rel="stylesheet" href="../sections/como-funciona/como-funciona.css">
   <link rel="stylesheet" href="../sections/modalidades/modalidades.css">
   <link rel="stylesheet" href="../sections/planos/planos.css">
+  <link rel="stylesheet" href="../sections/compare-planos/compare-planos.css">
+  <link rel="stylesheet" href="../sections/saude-integral/saude-integral.css">
 </head>
-<body>
+<body id="top">
   <header class="site-header">
-    <a class="site-header__logo" href="/" aria-label="Vitta">
-      <!-- TODO: substituir pelo logo SVG original -->
-      <span class="logo-placeholder" aria-hidden="true">Vitta</span>
+    <a class="site-header__logo" href="#top" aria-label="Vitta">
+      <img
+        class="site-header__logo-image"
+        src="../../public/assets/icons/logo.svg"
+        alt=""
+        aria-hidden="true"
+      >
     </a>
 
     <nav class="site-nav" aria-label="Navegação principal">
@@ -32,7 +38,7 @@
 
     <div class="site-header__actions">
       <a class="site-header__login" href="#entrar">Entrar</a>
-      <a class="button button--primary button--header" href="#planos">COMEÇAR AGORA</a>
+      <a class="button button--primary button--header" href="#">COMEÇAR AGORA</a>
     </div>
 
     <button
@@ -59,11 +65,11 @@
 
   <nav id="mobile-menu" class="mobile-menu" aria-label="Navegação mobile" aria-hidden="true">
     
-    <a href="#">Como funciona</a>
-    <a href="#">Modalidades</a>
-    <a href="#">Planos</a>
-    <a href="#">Parceiros</a>
-    <a href="#">Seja Parceiro</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#modalidades">Modalidades</a>
+    <a href="#planos">Planos</a>
+    <a href="#parceiros">Parceiros</a>
+    <a href="#seja-parceiro">Seja Parceiro</a>
     
     <div class="mobile-menu-actions">
         <a href="#" class="button button--secondary">
@@ -80,9 +86,11 @@
     <!-- A Home apenas organiza as seções. -->
     <div data-section="hero"></div>
     <div data-section="diferencial"></div>
-    <div data-section="como-funciona"></div>
-    <div data-section="modalidades"></div>
-    <div data-section="planos"></div>
+    <div id="como-funciona" data-section="como-funciona"></div>
+    <div id="modalidades" data-section="modalidades"></div>
+    <div data-section="compare-planos"></div>
+    <div data-section="saude-integral"></div>
+    <div id="planos" data-section="planos"></div>
   </main>
 
   <script type="module" src="../scripts/main.js"></script>
