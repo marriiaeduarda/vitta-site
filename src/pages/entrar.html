@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrar · Vitta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/entrar.css">
+</head>
+<body>
+  <div class="auth-page">
+    <div class="background__grid" aria-hidden="true"></div>
+
+    <header class="auth-page__topbar">
+      <a class="auth-page__logo" href="home.html" aria-label="Vitta">
+        <img class="auth-page__logo-image" src="../../public/assets/icons/logo.svg" alt="" aria-hidden="true">
+      </a>
+      <a class="auth-page__back" href="home.html">← Voltar</a>
+    </header>
+
+    <main class="auth-page__main">
+      <div class="auth-card">
+        <img class="auth-card__logo" src="../../public/assets/icons/logo.svg" alt="Vitta" loading="lazy">
+
+        <!-- Formulário de login -->
+        <div class="auth-form" data-auth-form="login">
+          <h1 class="auth-card__title">Bem-vindo de volta</h1>
+          <p class="auth-card__subtitle">Entre na sua conta VITTA</p>
+
+          <form data-auth="login-form" novalidate>
+            <div class="auth-field">
+              <label for="login-email">E-mail</label>
+              <input type="email" id="login-email" name="email" placeholder="seu@email.com" autocomplete="email">
+            </div>
+
+            <div class="auth-field">
+              <label for="login-password">Senha</label>
+              <input type="password" id="login-password" name="password" placeholder="••••••••" autocomplete="current-password">
+            </div>
+
+            <p class="auth-error" data-auth="login-error" role="alert" hidden></p>
+
+            <a href="#" class="auth-forgot">Esqueci minha senha</a>
+
+            <button type="submit" class="button button--primary auth-submit">Entrar</button>
+          </form>
+
+          <p class="auth-switch">Não tem conta? <a href="#" data-auth="go-to-register">Criar agora</a></p>
+        </div>
+
+        <!-- Formulário de cadastro -->
+        <div class="auth-form" data-auth-form="register" hidden>
+          <h1 class="auth-card__title">Comece sua jornada</h1>
+          <p class="auth-card__subtitle">Crie sua conta e escolha um plano</p>
+
+          <form data-auth="register-form" novalidate>
+            <div class="auth-field">
+              <label for="register-name">Nome completo</label>
+              <input type="text" id="register-name" name="name" placeholder="Seu nome" autocomplete="name">
+            </div>
+
+            <div class="auth-field">
+              <label for="register-email">E-mail</label>
+              <input type="email" id="register-email" name="email" placeholder="seu@email.com" autocomplete="email">
+            </div>
+
+            <div class="auth-field">
+              <label for="register-password">Senha</label>
+              <input type="password" id="register-password" name="password" placeholder="••••••••" autocomplete="new-password">
+            </div>
+
+            <div class="auth-field">
+              <label for="register-password-confirm">Confirmar senha</label>
+              <input type="password" id="register-password-confirm" name="passwordConfirm" placeholder="Repita a senha" autocomplete="new-password">
+            </div>
+
+            <p class="auth-error" data-auth="register-error" role="alert" hidden></p>
+
+            <button type="submit" class="button button--primary auth-submit">Criar conta</button>
+          </form>
+
+          <p class="auth-switch">Já tem conta? <a href="#" data-auth="go-to-login">Entrar</a></p>
+        </div>
+
+        <p class="auth-card__disclaimer">
+          Ao continuar, você concorda com os Termos de Uso e Política de Privacidade da VITTA.
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="../scripts/entrar.js"></script>
+</body>
+</html>
