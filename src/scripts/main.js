@@ -33,6 +33,13 @@ const loadSections = async () => {
         }
 
         container.innerHTML = await response.text();
+        
+        container.dispatchEvent(
+          new CustomEvent('section:loaded', {
+            detail: { sectionName },
+            bubbles: true,
+          })
+        );
       } catch (error) {
         console.error(error);
       }

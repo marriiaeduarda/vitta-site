@@ -16,10 +16,14 @@
   <link rel="stylesheet" href="../sections/planos/planos.css">
   <link rel="stylesheet" href="../sections/compare-planos/compare-planos.css">
   <link rel="stylesheet" href="../sections/saude-integral/saude-integral.css">
+  <link rel="stylesheet" href="../sections/rede-parceiros/rede-parceiros.css">
+  <link rel="stylesheet" href="../sections/app/app.css">
+  <link rel="stylesheet" href="../sections/seja-parceiro/seja-parceiro.css">
+  <link rel="stylesheet" href="../sections/cta-final/cta-final.css">
 </head>
-<body id="top">
+<body id="topo">
   <header class="site-header">
-    <a class="site-header__logo" href="#top" aria-label="Vitta">
+    <a class="site-header__logo" href="#topo" aria-label="Vitta">
       <img
         class="site-header__logo-image"
         src="../../public/assets/icons/logo.svg"
@@ -32,7 +36,7 @@
       <a href="#como-funciona">Como funciona</a>
       <a href="#modalidades">Modalidades</a>
       <a href="#planos">Planos</a>
-      <a href="#parceiros">Parceiros</a>
+      <a href="#rede-parceiros">Parceiros</a>
       <a href="#seja-parceiro">Seja Parceiro</a>
     </nav>
 
@@ -91,8 +95,63 @@
     <div data-section="compare-planos"></div>
     <div data-section="saude-integral"></div>
     <div id="planos" data-section="planos"></div>
+    <div id="rede-parceiros" data-section="rede-parceiros"></div>
+    <div data-section="app"></div>
+    <div id="seja-parceiro" data-section="seja-parceiro"></div>
+    <div data-section="cta-final"></div>
   </main>
 
+  <footer class="site-footer">
+    <div class="site-footer__container">
+      <div class="site-footer__top">
+        <div class="site-footer__brand">
+          <img class="site-footer__logo" src="../../public/assets/icons/logo.svg" alt="Vitta" loading="lazy">
+
+          <p class="site-footer__tagline">
+            Seu benefício de saúde e bem-estar, independente de onde você trabalha.
+          </p>
+
+          <ul class="site-footer__social">
+            <li><a class="site-footer__social-link" href="#topo">Instagram</a></li>
+            <li><a class="site-footer__social-link" href="#topo">TikTok</a></li>
+            <li><a class="site-footer__social-link" href="#topo">LinkedIn</a></li>
+          </ul>
+        </div>
+
+        <div class="site-footer__links">
+          <nav class="site-footer__column" aria-labelledby="footer-produto-heading">
+            <p id="footer-produto-heading" class="site-footer__column-title">Produto</p>
+            <ul class="site-footer__column-list">
+              <li><a href="#como-funciona">Como funciona</a></li>
+              <li><a href="#modalidades">Modalidades</a></li>
+              <li><a href="#planos">Planos</a></li>
+              <li><a href="#seja-parceiro">Parceiros</a></li>
+            </ul>
+          </nav>
+
+          <nav class="site-footer__column" aria-labelledby="footer-empresa-heading">
+            <p id="footer-empresa-heading" class="site-footer__column-title">Empresa</p>
+            <ul class="site-footer__column-list">
+              <li><a>Sobre a VITTA</a></li>
+              <li><a>FAQ</a></li>
+              <li><a>Termos de uso</a></li>
+              <li><a>Privacidade</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom">
+        <p class="site-footer__copyright">© 2026 VITTA. Todos os direitos reservados.</p>
+        <p class="site-footer__motto">
+          <span class="site-footer__motto-dot" aria-hidden="true"></span>
+          Bem-estar sem vínculo
+        </p>
+      </div>
+    </div>
+  </footer>
+
   <script type="module" src="../scripts/main.js"></script>
+  <script type="module" src="../scripts/rede-parceiros.js"></script>
 </body>
 </html>

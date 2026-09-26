@@ -1,0 +1,62 @@
+<section class="rede-parceiros" aria-labelledby="rede-parceiros-title">
+  <div class="rede-parceiros__container">
+    <div class="rede-parceiros__intro">
+      <p class="rede-parceiros__eyebrow">
+        <span class="rede-parceiros__eyebrow-line" aria-hidden="true"></span>
+        Rede de parceiros
+        <span class="rede-parceiros__eyebrow-line" aria-hidden="true"></span>
+      </p>
+
+      <h2 id="rede-parceiros-title" class="rede-parceiros__title">
+        ENCONTRE SUA <span class="rede-parceiros__title-highlight">VITTA</span>
+      </h2>
+
+      <p class="rede-parceiros__subtitle">Busque estabelecimentos de saúde e bem-estar na sua cidade</p>
+    </div>
+
+    <form class="rede-parceiros__search" data-rede-parceiros="search-form">
+      <label class="sr-only" for="rede-parceiros-search-input">Cidade ou CEP</label>
+      <input
+        type="text"
+        id="rede-parceiros-search-input"
+        class="rede-parceiros__search-input"
+        placeholder="Digite sua cidade ou CEP"
+        data-rede-parceiros="search-input"
+        autocomplete="off"
+      >
+      <button type="submit" class="button button--primary rede-parceiros__search-button">Buscar</button>
+    </form>
+
+    <div class="rede-parceiros__filters" role="group" aria-label="Filtrar por categoria" data-rede-parceiros="filters">
+      <button type="button" class="rede-parceiros__filter is-active" data-category="todos">Todos</button>
+      <button type="button" class="rede-parceiros__filter" data-category="academia">Academia</button>
+      <button type="button" class="rede-parceiros__filter" data-category="luta">Luta</button>
+      <button type="button" class="rede-parceiros__filter" data-category="pilates">Pilates</button>
+      <button type="button" class="rede-parceiros__filter" data-category="yoga">Yoga</button>
+      <button type="button" class="rede-parceiros__filter" data-category="natacao">Natação</button>
+      <button type="button" class="rede-parceiros__filter" data-category="beach">Beach</button>
+      <button type="button" class="rede-parceiros__filter" data-category="crossfit">CrossFit</button>
+    </div>
+
+    <p class="rede-parceiros__error" data-rede-parceiros="error" role="alert" hidden></p>
+
+    <div class="rede-parceiros__panel">
+      <div id="googleMap" class="rede-parceiros__map" data-rede-parceiros="map" role="application" aria-label="Mapa com estabelecimentos parceiros"></div>
+
+      <div class="rede-parceiros__sidebar">
+        <div class="rede-parceiros__empty-state" data-rede-parceiros="empty-state">
+          <img class="rede-parceiros__empty-icon" src="../../../public/assets/icons/buscar.svg" alt="" width="32" height="32">
+          <p>Busque uma cidade para ver estabelecimentos</p>
+        </div>
+
+        <ul class="rede-parceiros__list" data-rede-parceiros="list" aria-live="polite" hidden></ul>
+
+        <p class="rede-parceiros__results-count" data-rede-parceiros="results-count" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <p class="rede-parceiros__disclaimer">
+      Mapa exibe estabelecimentos simulados para fins de demonstração deste projeto
+    </p>
+  </div>
+</section>

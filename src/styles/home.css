@@ -155,3 +155,147 @@ body.menu-open {
     display: flex;
   }
 }
+
+/* ===== Rodapé ===== */
+
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+  padding: 64px 24px 32px;
+}
+
+.site-footer__container {
+  margin: 0 10%;
+}
+
+.site-footer__top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.site-footer__brand {
+  max-width: 320px;
+}
+
+.site-footer__logo {
+  display: block;
+  height: 22px;
+  width: auto;
+}
+
+.site-footer__tagline {
+  margin: 20px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.site-footer__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__social-link {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  padding: 0 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 64px;
+}
+
+.site-footer__column-title {
+  margin: 0 0 16px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.site-footer__column-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__column-list a {
+  font-size: 14px;
+  color:var(--color-text-muted);
+}
+
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.site-footer__copyright {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.site-footer__motto {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-primary-light);
+}
+
+.site-footer__motto-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+}
+
+@media (max-width: 700px) {
+  .site-footer__top {
+    flex-direction: column;
+  }
+
+  .site-footer__brand {
+    max-width: 100%;
+  }
+
+  .site-footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  @media (max-width: 700px) {
+  .site-footer__container {
+    margin: 0 5%;
+  }
+}
+}

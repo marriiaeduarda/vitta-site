@@ -1,0 +1,115 @@
+.aplicativo {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-background) 55%);
+  padding: 96px 24px;
+}
+
+.aplicativo__container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 560px) 1fr;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.aplicativo__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 20px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.aplicativo__eyebrow-line {
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-primary-light);
+}
+
+.aplicativo__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height: 1.15;
+  color: var(--color-text);
+}
+
+.aplicativo__title-line {
+  display: block;
+}
+
+.aplicativo__title-line--highlight {
+  color: var(--color-primary-light);
+}
+
+.aplicativo__subtitle {
+  max-width: 460px;
+  margin: 20px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.aplicativo__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 32px 0 0;
+}
+
+.aplicativo__cta {
+  display: inline-flex;
+  align-items: center;
+}
+
+.aplicativo__image {
+  justify-self: end;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  .aplicativo__container {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .aplicativo__eyebrow {
+    justify-content: center;
+  }
+
+  .aplicativo__subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .aplicativo__actions {
+    justify-content: center;
+  }
+
+  .aplicativo__image {
+    justify-self: center;
+    order: -1;
+  }
+}
+
+@media (max-width: 800px) {
+  .aplicativo {
+    padding: 72px 20px;
+  }
+}
