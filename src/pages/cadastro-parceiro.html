@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadastro de Parceiro · Vitta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/cadastro-parceiro.css">
+</head>
+<body>
+  <div class="partner-signup">
+    <div class="background__grid" aria-hidden="true"></div>
+
+    <header class="partner-signup__topbar">
+      <a class="partner-signup__logo" href="home.html" aria-label="Vitta">
+        <img class="partner-signup__logo-image" src="../../public/assets/icons/logo.svg" alt="" aria-hidden="true">
+      </a>
+      <p class="partner-signup__topbar-title">Cadastro de parceiro</p>
+      <a class="partner-signup__cancel" href="home.html">Cancelar</a>
+    </header>
+
+    <!-- ===== Conteúdo do formulário (etapas 1 a 4) ===== -->
+    <main class="partner-signup__main" data-partner-signup="form-view">
+      <div class="partner-signup__intro">
+        <p class="partner-signup__eyebrow">
+          <span class="partner-signup__eyebrow-line" aria-hidden="true"></span>
+          Seja parceiro Vitta
+          <span class="partner-signup__eyebrow-line" aria-hidden="true"></span>
+        </p>
+
+        <h1 class="partner-signup__title">
+          <span class="partner-signup__title-line">Leve sua academia</span>
+          <span class="partner-signup__title-line partner-signup__title-line--highlight">Ao próximo nível</span>
+        </h1>
+
+        <p class="partner-signup__subtitle">
+          Conecte-se a milhares de assinantes VITTA e expanda sua base de clientes sem custos de marketing.
+        </p>
+      </div>
+
+      <ul class="partner-signup__benefits">
+        <li class="partner-signup__benefit">
+          <span class="partner-signup__benefit-icon" aria-hidden="true">👥</span>
+          <p class="partner-signup__benefit-title">Novos clientes</p>
+          <p class="partner-signup__benefit-text">Acesso à base VITTA</p>
+        </li>
+        <li class="partner-signup__benefit">
+          <span class="partner-signup__benefit-icon" aria-hidden="true">📈</span>
+          <p class="partner-signup__benefit-title">Sem taxas fixas</p>
+          <p class="partner-signup__benefit-text">Pague por uso</p>
+        </li>
+        <li class="partner-signup__benefit">
+          <span class="partner-signup__benefit-icon" aria-hidden="true">🏆</span>
+          <p class="partner-signup__benefit-title">Visibilidade</p>
+          <p class="partner-signup__benefit-text">App e mapa VITTA</p>
+        </li>
+      </ul>
+
+      <!-- Indicador de etapas -->
+      <ol class="partner-signup__steps" data-partner-signup="step-indicator">
+        <li class="partner-signup__step is-active" data-step-indicator="1">
+          <span class="partner-signup__step-circle">1</span>
+          Sobre o negócio
+        </li>
+        <li class="partner-signup__step" data-step-indicator="2">
+          <span class="partner-signup__step-circle">2</span>
+          Endereço
+        </li>
+        <li class="partner-signup__step" data-step-indicator="3">
+          <span class="partner-signup__step-circle">3</span>
+          Modalidades
+        </li>
+        <li class="partner-signup__step" data-step-indicator="4">
+          <span class="partner-signup__step-circle">4</span>
+          Contato
+        </li>
+      </ol>
+
+      <!-- Card com o formulário da etapa atual -->
+      <div class="partner-signup__card">
+
+        <!-- Etapa 1: Sobre o negócio -->
+        <section class="wizard-step" data-step="1">
+          <h2 class="wizard-step__title">Sobre o negócio</h2>
+
+          <div class="wizard-field">
+            <label for="nome-estabelecimento">Nome do estabelecimento *</label>
+            <input type="text" id="nome-estabelecimento" required placeholder="Ex: Academia Force CrossFit">
+          </div>
+
+          <div class="wizard-field">
+            <label for="cnpj">CNPJ *</label>
+            <input type="text" id="cnpj" required inputmode="numeric" placeholder="00.000.000/0000-00" maxlength="18">
+          </div>
+
+          <div class="wizard-field">
+            <label for="categoria">Categoria *</label>
+            <select id="categoria" required>
+              <option value="" selected disabled>Selecione uma categoria</option>
+              <option value="academia">Academia</option>
+              <option value="pilates">Studio de Pilates</option>
+              <option value="yoga">Studio de Yoga</option>
+              <option value="danca">Estúdio de Dança</option>
+              <option value="natacao">Club de Natação</option>
+              <option value="lutas">Centro de Lutas</option>
+              <option value="nutricao">Clínica de Nutrição</option>
+              <option value="psicologia">Consultório de Psicologia</option>
+              <option value="wellness">Espaço Wellness</option>
+              <option value="esportivo">Centro Esportivo</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+
+          <div class="wizard-field">
+            <label for="descricao">Descrição breve</label>
+            <textarea id="descricao" rows="3" maxlength="200" placeholder="Descreva seu estabelecimento em até 200 caracteres..."></textarea>
+            <p class="wizard-field__counter"><span data-partner-signup="descricao-count">0</span>/200</p>
+          </div>
+
+          <div class="wizard-step__actions">
+            <button type="button" class="button button--primary wizard-next" data-goto-step="2" disabled>
+              Continuar
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Etapa 2: Endereço -->
+        <section class="wizard-step" data-step="2" hidden>
+          <h2 class="wizard-step__title">Endereço</h2>
+
+          <div class="wizard-row">
+            <div class="wizard-field">
+              <label for="rua">Rua / Av. *</label>
+              <input type="text" id="rua" required placeholder="Rua das Flores">
+            </div>
+            <div class="wizard-field wizard-field--small">
+              <label for="numero">Número *</label>
+              <input type="text" id="numero" required placeholder="123">
+            </div>
+          </div>
+
+          <div class="wizard-field">
+            <label for="complemento">Complemento</label>
+            <input type="text" id="complemento" placeholder="Sala 12, Andar 3...">
+          </div>
+
+          <div class="wizard-row">
+            <div class="wizard-field">
+              <label for="bairro">Bairro *</label>
+              <input type="text" id="bairro" required placeholder="Centro">
+            </div>
+            <div class="wizard-field wizard-field--small">
+              <label for="cep">CEP *</label>
+              <input type="text" id="cep" required inputmode="numeric" placeholder="00000-000" maxlength="9">
+            </div>
+          </div>
+
+          <div class="wizard-row">
+            <div class="wizard-field">
+              <label for="cidade">Cidade *</label>
+              <input type="text" id="cidade" required placeholder="São Paulo">
+            </div>
+            <div class="wizard-field wizard-field--small">
+              <label for="uf">UF *</label>
+              <select id="uf" required>
+                <option value="" selected disabled>UF</option>
+                <option value="AC">AC</option>
+                <option value="AL">AL</option>
+                <option value="AP">AP</option>
+                <option value="AM">AM</option>
+                <option value="BA">BA</option>
+                <option value="CE">CE</option>
+                <option value="DF">DF</option>
+                <option value="ES">ES</option>
+                <option value="GO">GO</option>
+                <option value="MA">MA</option>
+                <option value="MT">MT</option>
+                <option value="MS">MS</option>
+                <option value="MG">MG</option>
+                <option value="PA">PA</option>
+                <option value="PB">PB</option>
+                <option value="PR">PR</option>
+                <option value="PE">PE</option>
+                <option value="PI">PI</option>
+                <option value="RJ">RJ</option>
+                <option value="RN">RN</option>
+                <option value="RS">RS</option>
+                <option value="RO">RO</option>
+                <option value="RR">RR</option>
+                <option value="SC">SC</option>
+                <option value="SP">SP</option>
+                <option value="SE">SE</option>
+                <option value="TO">TO</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="wizard-step__actions wizard-step__actions--split">
+            <button type="button" class="button button--secondary wizard-back" data-goto-step="1">
+              <span aria-hidden="true">←</span>
+              Voltar
+            </button>
+            <button type="button" class="button button--primary wizard-next" data-goto-step="3" disabled>
+              Continuar
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Etapa 3: Modalidades -->
+        <section class="wizard-step" data-step="3" hidden>
+          <h2 class="wizard-step__title">Modalidades oferecidas</h2>
+          <p class="wizard-step__description">Selecione todas as modalidades disponíveis em seu estabelecimento.</p>
+
+          <div class="wizard-chips" data-partner-signup="modalidades">
+            <label class="wizard-chip"><input type="checkbox" value="Musculação"><span>Musculação</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Funcional"><span>Funcional</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Corrida e Caminhada"><span>Corrida e Caminhada</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Hidroginástica"><span>Hidroginástica</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Ciclismo Indoor"><span>Ciclismo Indoor</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Boxe"><span>Boxe</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Muay Thai"><span>Muay Thai</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Jiu-jitsu"><span>Jiu-jitsu</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Judô"><span>Judô</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Karatê"><span>Karatê</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Taekwondo"><span>Taekwondo</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Kickboxing"><span>Kickboxing</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Yoga"><span>Yoga</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Pilates"><span>Pilates</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Dança"><span>Dança</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Zumba"><span>Zumba</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Pole Dance"><span>Pole Dance</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Ballet"><span>Ballet</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Ritmos"><span>Ritmos</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Natação"><span>Natação</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Beach Tennis"><span>Beach Tennis</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Vôlei de Praia"><span>Vôlei de Praia</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Futevôlei"><span>Futevôlei</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Spinning"><span>Spinning</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="CrossFit"><span>CrossFit</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Escalada Indoor"><span>Escalada Indoor</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Surf"><span>Surf</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Stand Up Paddle"><span>Stand Up Paddle</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Trekking"><span>Trekking</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Esportes Radicais"><span>Esportes Radicais</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Nutrição"><span>Nutrição</span></label>
+            <label class="wizard-chip"><input type="checkbox" value="Psicologia"><span>Psicologia</span></label>
+          </div>
+
+          <p class="wizard-step__count">
+            <span data-partner-signup="modalidades-count">0</span> modalidades selecionadas
+          </p>
+
+          <div class="wizard-step__actions wizard-step__actions--split">
+            <button type="button" class="button button--secondary wizard-back" data-goto-step="2">
+              <span aria-hidden="true">←</span>
+              Voltar
+            </button>
+            <button type="button" class="button button--primary wizard-next" data-goto-step="4" disabled>
+              Continuar
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Etapa 4: Contato -->
+        <section class="wizard-step" data-step="4" hidden>
+          <h2 class="wizard-step__title">Dados de contato</h2>
+
+          <div class="wizard-field">
+            <label for="responsavel">Nome do responsável *</label>
+            <input type="text" id="responsavel" required placeholder="João da Silva">
+          </div>
+
+          <div class="wizard-row">
+            <div class="wizard-field">
+              <label for="telefone">Telefone / WhatsApp *</label>
+              <input type="text" id="telefone" required inputmode="numeric" placeholder="(11) 99999-9999" maxlength="15">
+            </div>
+            <div class="wizard-field">
+              <label for="email-contato">E-mail *</label>
+              <input type="email" id="email-contato" required placeholder="contato@academia.com.br">
+            </div>
+          </div>
+
+          <div class="wizard-row">
+            <div class="wizard-field">
+              <label for="site">Site</label>
+              <input type="text" id="site" placeholder="www.academia.com.br">
+            </div>
+            <div class="wizard-field">
+              <label for="instagram">Instagram</label>
+              <input type="text" id="instagram" placeholder="@academia">
+            </div>
+          </div>
+
+          <div class="wizard-summary">
+            <p class="wizard-summary__title">Resumo do cadastro</p>
+            <p data-partner-signup="summary-line-1"></p>
+            <p data-partner-signup="summary-line-2"></p>
+            <p data-partner-signup="summary-line-3"></p>
+          </div>
+
+          <label class="wizard-checkbox">
+            <input type="checkbox" id="aceite-termos" required>
+            <span>Aceito os <a href="#">Termos de Parceria VITTA</a> e autorizo o uso dos dados acima para fins de cadastro e comunicação.</span>
+          </label>
+
+          <div class="wizard-step__actions wizard-step__actions--split">
+            <button type="button" class="button button--secondary wizard-back" data-goto-step="3">
+              <span aria-hidden="true">←</span>
+              Voltar
+            </button>
+            <button type="button" class="button button--primary" data-partner-signup="submit" disabled>
+              Enviar cadastro
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <div class="partner-signup__why">
+        <p class="partner-signup__why-title">Por que ser parceiro Vitta</p>
+
+        <div class="partner-signup__why-grid">
+          <div class="partner-signup__why-card">
+            <p class="partner-signup__why-card-title">
+              <span class="partner-signup__why-dot" aria-hidden="true"></span>
+              Clientes garantidos
+            </p>
+            <p class="partner-signup__why-card-text">Receba visitas de assinantes VITTA mensalmente, sem esforço de captação.</p>
+          </div>
+          <div class="partner-signup__why-card">
+            <p class="partner-signup__why-card-title">
+              <span class="partner-signup__why-dot" aria-hidden="true"></span>
+              Sem mensalidade
+            </p>
+            <p class="partner-signup__why-card-text">Pague apenas uma comissão por check-in realizado. Zero custo fixo.</p>
+          </div>
+          <div class="partner-signup__why-card">
+            <p class="partner-signup__why-card-title">
+              <span class="partner-signup__why-dot" aria-hidden="true"></span>
+              Painel de gestão
+            </p>
+            <p class="partner-signup__why-card-text">Acompanhe check-ins, avaliações e performance em tempo real.</p>
+          </div>
+          <div class="partner-signup__why-card">
+            <p class="partner-signup__why-card-title">
+              <span class="partner-signup__why-dot" aria-hidden="true"></span>
+              Suporte dedicado
+            </p>
+            <p class="partner-signup__why-card-text">Time VITTA disponível para ajudar na sua integração e crescimento.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ===== Tela de confirmação (some no lugar do formulário ao enviar) ===== -->
+    <main class="partner-signup__success" data-partner-signup="success-view" hidden>
+      <span class="partner-signup__success-icon" aria-hidden="true">✓</span>
+      <img class="partner-signup__success-logo" src="../../public/assets/icons/logo.svg" alt="Vitta" loading="lazy">
+      <h1 class="partner-signup__success-title">Cadastro recebido</h1>
+      <p class="partner-signup__success-thanks">
+        Obrigado, <span data-partner-signup="success-name"></span>!
+      </p>
+      <p class="partner-signup__success-text">
+        Nossa equipe analisará seu cadastro e entrará em contato em até 3 dias úteis pelo e-mail
+        <span data-partner-signup="success-email"></span>.
+      </p>
+      <a href="home.html" class="button button--primary">Voltar ao início</a>
+    </main>
+  </div>
+
+  <script type="module" src="../scripts/cadastro-parceiro.js"></script>
+</body>
+</html>
