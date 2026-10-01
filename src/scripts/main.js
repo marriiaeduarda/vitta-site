@@ -1,3 +1,5 @@
+import { getSession } from './session.js';
+
 const siteHeader = document.querySelector('.site-header');
 const menuButton = document.querySelector('.site-header__menu-button');
 const mobileMenu = document.querySelector('#mobile-menu');
@@ -5,6 +7,31 @@ const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
 
 const setScrolledHeader = () => {
   siteHeader?.classList.toggle('is-scrolled', window.scrollY > 0);
+};
+
+/**
+ * Alterna os elementos do header/menu mobile entre o estado deslogado
+ * ("Entrar" / "Começar Agora") e o logado ("Minha VITTA" com a inicial
+ * do nome), com base na sessão simulada guardada pelo session.js.
+ */
+const applySessionUi = () => {
+  const session = getSession();
+  const loggedIn = Boolean(session);
+
+  document.querySelectorAll('[data-session="logged-out"]').forEach((el) => {
+    el.hidden = loggedIn;
+  });
+
+  document.querySelectorAll('[data-session="logged-in"]').forEach((el) => {
+    el.hidden = !loggedIn;
+  });
+
+  if (loggedIn) {
+    const initial = session.name?.trim().charAt(0).toUpperCase() || '?';
+    document.querySelectorAll('[data-session-avatar]').forEach((el) => {
+      el.textContent = initial;
+    });
+  }
 };
 
 const setMobileMenuState = (isOpen) => {
@@ -33,7 +60,9 @@ const loadSections = async () => {
         }
 
         container.innerHTML = await response.text();
-        
+
+        // Avisa scripts específicos de seção (ex: rede-parceiros.js) que o
+        // HTML já está no DOM e é seguro selecionar elementos dentro dele.
         container.dispatchEvent(
           new CustomEvent('section:loaded', {
             detail: { sectionName },
@@ -67,4 +96,5 @@ document.addEventListener('keydown', (event) => {
 window.addEventListener('scroll', setScrolledHeader, { passive: true });
 
 setScrolledHeader();
+applySessionUi();
 loadSections();

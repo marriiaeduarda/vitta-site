@@ -102,14 +102,6 @@
   filter: brightness(0.55) saturate(0.75);
 }
 
-.seja-parceiro__media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(7, 9, 11, 0.35);
-  pointer-events: none;
-}
-
 .seja-parceiro__badge {
   position: absolute;
   top: 20px;

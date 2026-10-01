@@ -58,6 +58,10 @@ a {
   white-space: nowrap;
 }
 
+.button[hidden] {
+  display: none;
+}
+
 .button--primary {
   background: var(--color-primary);
   box-shadow: 0 8px 20px rgba(53, 107, 184, 0.22);

@@ -41,8 +41,12 @@
     </nav>
 
     <div class="site-header__actions">
-      <a class="site-header__login" href="../pages/entrar.html">Entrar</a>
-      <a class="button button--primary button--header" href='../pages/entrar.html?modo=cadastro'>COMEÇAR AGORA</a>
+      <a class="site-header__login" href="entrar.html" data-session="logged-out">Entrar</a>
+      <a class="button button--primary button--header" href="entrar.html?modo=cadastro" data-session="logged-out">COMEÇAR AGORA</a>
+      <a class="button button--primary button--header site-header__account" href="minha-vitta.html" data-session="logged-in" hidden>
+        <span class="site-header__avatar" data-session-avatar></span>
+        Minha VITTA
+      </a>
     </div>
 
     <button
@@ -76,12 +80,17 @@
     <a href="#seja-parceiro">Seja Parceiro</a>
     
     <div class="mobile-menu-actions">
-        <a href="#" class="button button--secondary">
+        <a href="entrar.html" class="button button--secondary" data-session="logged-out">
             Entrar
         </a>
 
-        <a href="../pages/entrar.html?modo=cadastro" class="button button--primary">
+        <a href="entrar.html?modo=cadastro" class="button button--primary" data-session="logged-out">
             COMEÇAR AGORA
+        </a>
+
+        <a href="minha-vitta.html" class="button button--primary site-header__account" data-session="logged-in" hidden>
+            <span class="site-header__avatar" data-session-avatar></span>
+            Minha VITTA
         </a>
     </div>
   </nav>
@@ -153,6 +162,5 @@
 
   <script type="module" src="../scripts/main.js"></script>
   <script type="module" src="../scripts/rede-parceiros.js"></script>
-  <script type="module" src="../scripts/cadastro-parceiro.js"></script>
 </body>
 </html>

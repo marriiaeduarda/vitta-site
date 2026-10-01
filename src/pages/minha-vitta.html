@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minha Vitta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/minha-vitta.css">
+</head>
+<body>
+  <div class="dashboard">
+    <div class="background__grid" aria-hidden="true"></div>
+
+    <header class="dashboard__topbar">
+      <a class="dashboard__logo" href="home.html" aria-label="Vitta">
+        <img class="dashboard__logo-image" src="../../public/assets/icons/logo.svg" alt="" aria-hidden="true">
+      </a>
+
+      <div class="dashboard__topbar-actions">
+        <span class="dashboard__plan-badge" data-dashboard="plan-badge"></span>
+
+        <span class="dashboard__avatar" data-dashboard="avatar-initial"></span>
+        <span class="dashboard__user-name" data-dashboard="user-name"></span>
+
+        <button type="button" class="dashboard__logout" data-dashboard="logout">Sair</button>
+      </div>
+    </header>
+
+    <div class="dashboard__body">
+      <nav class="dashboard__sidebar" aria-label="Menu da área logada">
+        <ul class="dashboard__nav">
+          <li>
+            <button type="button" class="dashboard__nav-item is-active" data-goto-panel="inicio">
+              <img src="../../public/assets/icons/casa.svg" alt="" aria-hidden="true">
+              Início
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dashboard__nav-item" data-goto-panel="checkin">
+              <img src="../../public/assets/icons/verificacao.svg" alt="" aria-hidden="true">
+              Check-in
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dashboard__nav-item" data-goto-panel="nutricao">
+              <img src="../../public/assets/icons/salada.svg" alt="" aria-hidden="true">
+              Nutrição
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dashboard__nav-item" data-goto-panel="psicologia">
+              <img src="../../public/assets/icons/cerebro.svg" alt="" aria-hidden="true">
+              Psicologia
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dashboard__nav-item" data-goto-panel="historico">
+              <img src="../../public/assets/icons/relogio.svg" alt="" aria-hidden="true">
+              Histórico
+            </button>
+          </li>
+        </ul>
+
+        <a href="assinatura.html" class="button button--primary dashboard__change-plan" data-dashboard="change-plan-link">Mudar plano</a>
+      </nav>
+
+      <main class="dashboard__content">
+
+        <!-- Painel: Início -->
+        <section class="dashboard-panel" data-panel="inicio">
+          <h1 class="dashboard__greeting">
+            Olá, <span data-dashboard="greeting-name"></span>
+            <img class="dashboard__greeting-icon" src="../../public/assets/icons/logo.svg" alt="" aria-hidden="true">
+          </h1>
+          <p class="dashboard__greeting-subtitle">Pronto para se mover hoje?</p>
+
+          <div class="dashboard-stats">
+            <div class="dashboard-stat">
+              <img class="dashboard-stat__icon" src="../../public/assets/icons/verificacao.svg" alt="" aria-hidden="true">
+              <p class="dashboard-stat__value" data-dashboard="stat-checkins"></p>
+              <p class="dashboard-stat__label">Check-ins</p>
+            </div>
+            <div class="dashboard-stat">
+              <img class="dashboard-stat__icon" src="../../public/assets/icons/salada.svg" alt="" aria-hidden="true">
+              <p class="dashboard-stat__value" data-dashboard="stat-nutricao"></p>
+              <p class="dashboard-stat__label">Nutrição</p>
+            </div>
+            <div class="dashboard-stat">
+              <img class="dashboard-stat__icon" src="../../public/assets/icons/cerebro.svg" alt="" aria-hidden="true">
+              <p class="dashboard-stat__value" data-dashboard="stat-psicologia"></p>
+              <p class="dashboard-stat__label">Psicologia</p>
+            </div>
+            <div class="dashboard-stat">
+              <img class="dashboard-stat__icon" src="../../public/assets/icons/estrela.svg" alt="" aria-hidden="true">
+              <p class="dashboard-stat__value" data-dashboard="stat-plano"></p>
+              <p class="dashboard-stat__label">Plano</p>
+            </div>
+          </div>
+
+          <div class="dashboard-card">
+            <p class="dashboard-card__title">Ações rápidas</p>
+            <div class="dashboard-quick-actions">
+              <button type="button" class="dashboard-quick-action" data-goto-panel="checkin">
+                <img src="../../public/assets/icons/verificacao.svg" alt="" aria-hidden="true">
+                Fazer Check-in
+              </button>
+              <button type="button" class="dashboard-quick-action" data-goto-panel="nutricao">
+                <img src="../../public/assets/icons/salada.svg" alt="" aria-hidden="true">
+                Agendar Nutrição
+              </button>
+              <button type="button" class="dashboard-quick-action" data-goto-panel="psicologia">
+                <img src="../../public/assets/icons/cerebro.svg" alt="" aria-hidden="true">
+                Agendar Psicologia
+              </button>
+            </div>
+          </div>
+
+          <div class="dashboard-card">
+            <p class="dashboard-card__title">Último check-in</p>
+            <div class="dashboard-last-checkin" data-dashboard="last-checkin"></div>
+          </div>
+
+          <a href="assinatura.html" class="dashboard__change-plan-mobile" data-dashboard="change-plan-link-mobile">Mudar plano</a>
+        </section>
+
+        <!-- Painel: Check-in -->
+        <section class="dashboard-panel" data-panel="checkin" hidden>
+          <h1 class="dashboard-panel__title">Fazer check-in</h1>
+          <p class="dashboard-panel__subtitle">Selecione o estabelecimento onde você está agora.</p>
+
+          <ul class="dashboard-venues" data-dashboard="venues-list"></ul>
+        </section>
+
+        <!-- Painel: Nutrição -->
+        <section class="dashboard-panel" data-panel="nutricao" hidden>
+          <h1 class="dashboard-panel__title">Nutrição</h1>
+
+          <p class="dashboard-gate" data-dashboard="nutricao-gate" hidden></p>
+
+          <div class="dashboard-professionals" data-dashboard="nutricao-professionals"></div>
+
+          <div class="dashboard-card">
+            <p class="dashboard-card__title">Minhas consultas</p>
+            <ul class="dashboard-appointments" data-dashboard="nutricao-appointments"></ul>
+          </div>
+        </section>
+
+        <!-- Painel: Psicologia -->
+        <section class="dashboard-panel" data-panel="psicologia" hidden>
+          <h1 class="dashboard-panel__title">Psicologia</h1>
+
+          <p class="dashboard-gate" data-dashboard="psicologia-gate" hidden></p>
+
+          <div class="dashboard-professionals" data-dashboard="psicologia-professionals"></div>
+
+          <div class="dashboard-card">
+            <p class="dashboard-card__title">Minhas sessões</p>
+            <ul class="dashboard-appointments" data-dashboard="psicologia-appointments"></ul>
+          </div>
+        </section>
+
+        <!-- Painel: Histórico -->
+        <section class="dashboard-panel" data-panel="historico" hidden>
+          <h1 class="dashboard-panel__title">Histórico de atividades</h1>
+
+          <ul class="dashboard-history" data-dashboard="history-list"></ul>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="../scripts/minha-vitta.js"></script>
+</body>
+</html>

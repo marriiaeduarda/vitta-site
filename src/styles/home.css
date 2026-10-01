@@ -84,6 +84,18 @@
   display: none;
 }
 
+.site-header__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(245, 246, 247, 0.15);
+  font-size: 12px;
+  font-weight: 800;
+}
+
 .mobile-menu {
   position: fixed;
   z-index: 99;

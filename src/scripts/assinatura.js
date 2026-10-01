@@ -1,3 +1,17 @@
+import { getSession, updateSession } from './session.js';
+
+/* ---------------------------------------------------------------- */
+/* Exige sessão ativa                                               */
+/* ---------------------------------------------------------------- */
+
+const requestedPlanParam = new URLSearchParams(window.location.search).get('plano');
+
+if (!getSession()) {
+  const redirectParams = new URLSearchParams({ modo: 'cadastro' });
+  if (requestedPlanParam) redirectParams.set('plano', requestedPlanParam);
+  window.location.href = `entrar.html?${redirectParams.toString()}`;
+}
+
 /* ---------------------------------------------------------------- */
 /* Dados dos planos (mesmos valores da seção Planos da Home)          */
 /* ---------------------------------------------------------------- */
@@ -268,27 +282,40 @@ submitButton.addEventListener('click', () => {
   document.querySelector('[data-checkout="success-plan-name"]').textContent = plan.name.toUpperCase();
 
   // Este projeto não tem back-end (TCC): não há processamento real de pagamento aqui.
+  updateSession({ plan: selectedPlan });
   console.log('Assinatura simulada:', { plano: selectedPlan, metodo: selectedPaymentMethod });
 
   checkoutMain.hidden = true;
   successView.hidden = false;
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // Redireciona automaticamente para a Home após 5s, caso o usuário
-  // permaneça na tela sem clicar em "Acessar minha Vitta".
+  // Redireciona automaticamente para a área logada após 5s, caso o
+  // usuário permaneça na tela sem clicar em "Acessar minha Vitta".
   setTimeout(() => {
-    window.location.href = 'home.html';
+    window.location.href = 'minha-vitta.html';
   }, 5000);
 });
 
 /* ---------------------------------------------------------------- */
-/* Estado inicial: lê ?plano= da URL                                   */
+/* Estado inicial: lê ?plano= (e opcionalmente ?step=) da URL          */
 /* ---------------------------------------------------------------- */
 
-const requestedPlan = new URLSearchParams(window.location.search).get('plano');
+const initialParams = new URLSearchParams(window.location.search);
+const requestedPlan = initialParams.get('plano');
+const forcedStep = initialParams.get('step');
 const initialPlan = PLANS[requestedPlan] ? requestedPlan : 'black';
 
 selectPlan(initialPlan);
 
-// Se a URL já veio com um plano específico, pula direto para a etapa 2.
-goToStep(requestedPlan && PLANS[requestedPlan] ? 2 : 1);
+// Regra: ?plano= sozinho (vindo dos cards de plano da Home) pula direto
+// para a etapa 2. ?step=1 força a etapa 1 mesmo com um plano na URL —
+// usado pelo botão "Mudar plano" da área logada, que quer abrir na
+// etapa de escolha de plano já com o plano atual pré-selecionado.
+let initialStep = 1;
+if (forcedStep === '1') {
+  initialStep = 1;
+} else if (requestedPlan && PLANS[requestedPlan]) {
+  initialStep = 2;
+}
+
+goToStep(initialStep);
