@@ -99,35 +99,45 @@ loginForm?.addEventListener('submit', (event) => {
 });
 
 // --- Cadastro ---
+// A validação principal acontece no backend via express-validator.
 
-registerForm?.addEventListener('submit', (event) => {
+registerForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
 
-  const name = registerForm.name.value.trim();
-  const email = registerForm.email.value.trim();
+  const name = registerForm.elements.namedItem('name').value.trim();
+  const email = registerForm.elements.namedItem('email').value.trim();
   const password = registerForm.password.value;
-  const passwordConfirm = registerForm.passwordConfirm.value;
-
-  if (!name || !email || !password || !passwordConfirm) {
-    setError(registerError, 'Preencha todos os campos.');
-    return;
-  }
-
-  if (!isValidEmail(email)) {
-    setError(registerError, 'Digite um e-mail válido.');
-    return;
-  }
-
-  if (password !== passwordConfirm) {
-    setError(registerError, 'As senhas não coincidem.');
-    return;
-  }
+  const passwordConfirm = registerForm.elements.namedItem('passwordConfirm').value;
 
   setError(registerError, null);
 
-  setSession({ name, email, plan: null });
+  const submitButton = registerForm.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
 
-  redirectAfterAuth(true);
+  try {
+    const response = await fetch('/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, password, passwordConfirm }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      const message = result.errors?.map((error) => error.message).join(' ')
+        || result.message
+        || 'Não foi possível validar os dados.';
+      setError(registerError, message);
+      return;
+    }
+
+    setSession({ name, email, plan: null });
+    redirectAfterAuth(true);
+  } catch {
+    setError(registerError, 'Não foi possível conectar ao servidor. Tente novamente.');
+  } finally {
+    submitButton.disabled = false;
+  }
 });
 
 // --- Estado inicial (permite abrir a página já no modo cadastro) ---
