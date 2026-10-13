@@ -38,10 +38,6 @@ function setError(errorEl, message) {
   }
 }
 
-function isValidEmail(value) {
-  return value.includes('@');
-}
-
 // Após logar/cadastrar: se veio de um plano específico, segue pro checkout
 // daquele plano, senão, cadastro novo vai escolher um plano do zero e login
 // de quem já tem conta vai direto pra área logada.
@@ -74,28 +70,44 @@ document.querySelectorAll('[data-auth="go-to-login"]').forEach((link) => {
 // Qualquer e-mail/senha válidos são aceitos, e o nome
 // exibido é derivado da parte antes do "@" do e-mail.
 
-loginForm?.addEventListener('submit', (event) => {
+loginForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
 
-  const email = loginForm.email.value.trim();
-  const password = loginForm.password.value;
-
-  if (!email || !password) {
-    setError(loginError, 'Preencha todos os campos.');
-    return;
-  }
-
-  if (!isValidEmail(email)) {
-    setError(loginError, 'Digite um e-mail válido.');
-    return;
-  }
+  const email = loginForm.elements.namedItem('email').value.trim();
+  const password = loginForm.elements.namedItem('password').value;
 
   setError(loginError, null);
 
-  const name = email.split('@')[0];
-  setSession({ name, email, plan: null });
+  const submitButton = loginForm.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
 
-  redirectAfterAuth(false);
+  try {
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      const message = result.errors?.map((error) => error.message).join(' ')
+        || result.message
+        || 'Não foi possível validar os dados.';
+      setError(loginError, message);
+      return;
+    }
+
+    const normalizedEmail = email.toLowerCase();
+    const name = normalizedEmail.split('@')[0];
+    setSession({ name, email: normalizedEmail, plan: null });
+
+    redirectAfterAuth(false);
+  } catch {
+    setError(loginError, 'Não foi possível conectar ao servidor. Tente novamente.');
+  } finally {
+    submitButton.disabled = false;
+  }
 });
 
 // --- Cadastro ---
