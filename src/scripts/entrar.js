@@ -106,7 +106,7 @@ registerForm?.addEventListener('submit', async (event) => {
 
   const name = registerForm.elements.namedItem('name').value.trim();
   const email = registerForm.elements.namedItem('email').value.trim();
-  const password = registerForm.password.value;
+  const password = registerForm.elements.namedItem('password').value;
   const passwordConfirm = registerForm.elements.namedItem('passwordConfirm').value;
 
   setError(registerError, null);

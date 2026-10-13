@@ -33,6 +33,9 @@ function goToStep(stepNumber) {
 
 document.querySelectorAll('[data-goto-step]').forEach((button) => {
   button.addEventListener('click', () => {
+    // As etapas seguintes só avançam depois da validação no backend.
+    // Os botões Voltar continuam navegando sem uma nova validação.
+    if (button.classList.contains('wizard-next')) return;
     goToStep(Number(button.dataset.gotoStep));
   });
 });
@@ -98,47 +101,26 @@ descricaoInput.addEventListener('input', () => {
 /* Habilita/desabilita o botão "Continuar" de cada etapa              */
 /* ---------------------------------------------------------------- */
 
-function isStepValid(stepEl) {
-  const requiredFields = stepEl.querySelectorAll('input[required], select[required], textarea[required]');
-
-  for (const field of requiredFields) {
-    if (!field.value.trim()) return false;
-  }
-
-  // Etapa 3 (modalidades) tem sua própria regra: pelo menos 1 selecionada.
-  const modalidadesGroup = stepEl.querySelector('[data-partner-signup="modalidades"]');
-  if (modalidadesGroup) {
-    const checked = modalidadesGroup.querySelectorAll('input:checked');
-    if (checked.length === 0) return false;
-  }
-
-  return true;
-}
-
 function wireStepValidation(stepEl) {
-  const nextButton = stepEl.querySelector('.wizard-next');
-  const submitButton = stepEl.querySelector('[data-partner-signup="submit"]');
-  const button = nextButton || submitButton;
-  if (!button) return;
-
+  const stepNumber = Number(stepEl.dataset.step);
+  const errorElement = stepEl.querySelector('[data-step-error]');
   const fields = stepEl.querySelectorAll('input, select, textarea');
 
-  const update = () => {
-    let valid = isStepValid(stepEl);
-
-    // Etapa 4 também exige o checkbox de aceite marcado.
-    const aceite = stepEl.querySelector('#aceite-termos');
-    if (aceite && !aceite.checked) valid = false;
-
-    button.disabled = !valid;
-  };
-
+  // Ao editar um campo, ocultamos a mensagem anterior. A validação oficial
+  // acontece no backend quando a pessoa clica em Continuar/Enviar.
   fields.forEach((field) => {
-    field.addEventListener('input', update);
-    field.addEventListener('change', update);
+    const clearError = () => {
+      if (errorElement) {
+        errorElement.textContent = '';
+        errorElement.hidden = true;
+      }
+    };
+    field.addEventListener('input', clearError);
+    field.addEventListener('change', clearError);
   });
 
-  update();
+  // Mantém o número da etapa disponível para os handlers de navegação.
+  stepEl.dataset.validationStep = String(stepNumber);
 }
 
 steps.forEach(wireStepValidation);
@@ -182,22 +164,135 @@ modalidadesGroup.addEventListener('change', () => {
 /* Envio do cadastro                                                  */
 /* ---------------------------------------------------------------- */
 
+function getPartnerPayload() {
+  return {
+    nomeEstabelecimento: document.getElementById('nome-estabelecimento').value,
+    cnpj: document.getElementById('cnpj').value,
+    categoria: document.getElementById('categoria').value,
+    descricao: document.getElementById('descricao').value,
+    rua: document.getElementById('rua').value,
+    numero: document.getElementById('numero').value,
+    complemento: document.getElementById('complemento').value,
+    bairro: document.getElementById('bairro').value,
+    cep: document.getElementById('cep').value,
+    cidade: document.getElementById('cidade').value,
+    uf: document.getElementById('uf').value,
+    modalidades: Array.from(document.querySelectorAll('[data-partner-signup="modalidades"] input:checked'), (input) => input.value),
+    responsavel: document.getElementById('responsavel').value,
+    telefone: document.getElementById('telefone').value,
+    email: document.getElementById('email-contato').value,
+    site: document.getElementById('site').value,
+    instagram: document.getElementById('instagram').value,
+    aceiteTermos: document.getElementById('aceite-termos').checked,
+  };
+}
+
+function showStepError(stepNumber, message) {
+  const errorElement = document.querySelector(`[data-step-error="${stepNumber}"]`);
+  if (!errorElement) return;
+  errorElement.textContent = message || '';
+  errorElement.hidden = !message;
+}
+
+async function validatePartnerStep(stepNumber) {
+  const stepElement = document.querySelector(`.wizard-step[data-step="${stepNumber}"]`);
+  const nextButton = stepElement.querySelector('.wizard-next');
+  showStepError(stepNumber, '');
+
+  if (nextButton) {
+    nextButton.disabled = true;
+    nextButton.dataset.originalText = nextButton.textContent;
+    nextButton.textContent = 'Validando...';
+  }
+
+  try {
+    const response = await fetch('/api/partners/validate-step', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...getPartnerPayload(), step: stepNumber }),
+    });
+    const result = await response.json();
+
+    if (!response.ok) {
+      const messages = result.errors?.map((error) => error.message) || [];
+      showStepError(stepNumber, [...new Set(messages)].join(' ') || result.message || 'Revise os dados desta etapa.');
+      return false;
+    }
+
+    return true;
+  } catch {
+    showStepError(stepNumber, 'Não foi possível conectar ao servidor. Tente novamente.');
+    return false;
+  } finally {
+    if (nextButton) {
+      nextButton.disabled = false;
+      nextButton.textContent = nextButton.dataset.originalText || 'Continuar';
+      delete nextButton.dataset.originalText;
+    }
+  }
+}
+
+document.querySelectorAll('.wizard-next').forEach((button) => {
+  button.addEventListener('click', async () => {
+    const currentStepNumber = Number(button.closest('.wizard-step').dataset.step);
+    const isValid = await validatePartnerStep(currentStepNumber);
+    if (!isValid) return;
+
+    const nextStepNumber = Number(button.dataset.gotoStep);
+    if (nextStepNumber === 4) updateSummary();
+    goToStep(nextStepNumber);
+  });
+});
+
 const submitButton = document.querySelector('[data-partner-signup="submit"]');
+const submitError = document.querySelector('[data-partner-signup="error"]');
 
-submitButton.addEventListener('click', () => {
-  const nomeResponsavel = document.getElementById('responsavel').value.trim();
-  const email = document.getElementById('email-contato').value.trim();
-  const primeiroNome = nomeResponsavel.split(' ')[0];
+function showSubmitError(message) {
+  submitError.textContent = message || '';
+  submitError.hidden = !message;
+}
 
-  document.querySelector('[data-partner-signup="success-name"]').textContent = primeiroNome;
-  document.querySelector('[data-partner-signup="success-email"]').textContent = email;
+submitButton.addEventListener('click', async () => {
+  showSubmitError('');
 
-  // Este projeto não tem back-end (TCC): não há envio real do cadastro aqui.
-  console.log('Cadastro de parceiro simulado.');
+  const payload = getPartnerPayload();
 
-  formView.hidden = true;
-  successView.hidden = false;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  submitButton.disabled = true;
+  const originalButtonText = submitButton.textContent.trim();
+  submitButton.textContent = 'Validando...';
+
+  try {
+    const response = await fetch('/api/partners/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const result = await response.json();
+
+    if (!response.ok) {
+      const messages = result.errors?.map((error) => error.message) || [];
+      showSubmitError([...new Set(messages)].join(' ')
+        || result.message
+        || 'Não foi possível validar os dados. Revise o formulário.');
+      return;
+    }
+
+    const nomeResponsavel = payload.responsavel.trim();
+    const primeiroNome = nomeResponsavel.split(/\s+/)[0];
+    document.querySelector('[data-partner-signup="success-name"]').textContent = primeiroNome;
+    document.querySelector('[data-partner-signup="success-email"]').textContent = payload.email.trim();
+
+    // O backend apenas valida os dados
+    console.log(result.message);
+    formView.hidden = true;
+    successView.hidden = false;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } catch {
+    showSubmitError('Não foi possível conectar ao servidor. Tente novamente.');
+  } finally {
+    submitButton.textContent = originalButtonText;
+    submitButton.disabled = false;
+  }
 });
 
 /* ---------------------------------------------------------------- */

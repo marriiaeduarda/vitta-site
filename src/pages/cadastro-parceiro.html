@@ -120,8 +120,10 @@
             <p class="wizard-field__counter"><span data-partner-signup="descricao-count">0</span>/200</p>
           </div>
 
+          <p class="partner-signup__error" data-step-error="1" role="alert" aria-live="polite" hidden></p>
+
           <div class="wizard-step__actions">
-            <button type="button" class="button button--primary wizard-next" data-goto-step="2" disabled>
+            <button type="button" class="button button--primary wizard-next" data-goto-step="2">
               Continuar
               <span aria-hidden="true">→</span>
             </button>
@@ -199,12 +201,14 @@
             </div>
           </div>
 
+          <p class="partner-signup__error" data-step-error="2" role="alert" aria-live="polite" hidden></p>
+
           <div class="wizard-step__actions wizard-step__actions--split">
             <button type="button" class="button button--secondary wizard-back" data-goto-step="1">
               <span aria-hidden="true">←</span>
               Voltar
             </button>
-            <button type="button" class="button button--primary wizard-next" data-goto-step="3" disabled>
+            <button type="button" class="button button--primary wizard-next" data-goto-step="3">
               Continuar
               <span aria-hidden="true">→</span>
             </button>
@@ -255,12 +259,14 @@
             <span data-partner-signup="modalidades-count">0</span> modalidades selecionadas
           </p>
 
+          <p class="partner-signup__error" data-step-error="3" role="alert" aria-live="polite" hidden></p>
+
           <div class="wizard-step__actions wizard-step__actions--split">
             <button type="button" class="button button--secondary wizard-back" data-goto-step="2">
               <span aria-hidden="true">←</span>
               Voltar
             </button>
-            <button type="button" class="button button--primary wizard-next" data-goto-step="4" disabled>
+            <button type="button" class="button button--primary wizard-next" data-goto-step="4">
               Continuar
               <span aria-hidden="true">→</span>
             </button>
@@ -310,12 +316,14 @@
             <span>Aceito os <a href="#">Termos de Parceria VITTA</a> e autorizo o uso dos dados acima para fins de cadastro e comunicação.</span>
           </label>
 
+          <p class="partner-signup__error" data-partner-signup="error" data-step-error="4" role="alert" aria-live="polite" hidden></p>
+
           <div class="wizard-step__actions wizard-step__actions--split">
             <button type="button" class="button button--secondary wizard-back" data-goto-step="3">
               <span aria-hidden="true">←</span>
               Voltar
             </button>
-            <button type="button" class="button button--primary" data-partner-signup="submit" disabled>
+            <button type="button" class="button button--primary" data-partner-signup="submit">
               Enviar cadastro
               <span aria-hidden="true">→</span>
             </button>

@@ -544,3 +544,14 @@
     grid-template-columns: 1fr;
   }
 }
+
+.partner-signup__error {
+  margin: 16px 0 0;
+  color: var( --color-danger);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.partner-signup__error[hidden] {
+  display: none;
+}

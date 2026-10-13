@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import authRoutes from './server/routes/auth.routes.js';
+import partnersRoutes from './server/routes/partner.routes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -26,6 +27,7 @@ app.get('/api/health', (_req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/partners', partnersRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Recurso não encontrado.' });
