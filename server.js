@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import authRoutes from './server/routes/auth.routes.js';
 import partnersRoutes from './server/routes/partner.routes.js';
+import adminRoutes from './server/routes/admin.routes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -28,9 +29,20 @@ app.get('/api/health', (_req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/partners', partnersRoutes);
+app.use('/api/admin', adminRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Recurso não encontrado.' });
+});
+
+// Erros inesperados (ex.: JSON malformado) também respondem em JSON, sem expor detalhes internos.
+app.use((error, _req, res, _next) => {
+  if (error.type === 'entity.parse.failed') {
+    return res.status(400).json({ message: 'O corpo da requisição não é um JSON válido.' });
+  }
+
+  console.error(error);
+  return res.status(500).json({ message: 'Erro interno do servidor.' });
 });
 
 app.listen(PORT, '0.0.0.0', () => {

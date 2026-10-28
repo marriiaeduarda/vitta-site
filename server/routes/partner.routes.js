@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import { validationResult } from 'express-validator';
+import { matchedData, validationResult } from 'express-validator';
 import {
   partnerRegistrationValidators,
   partnerStepValidators,
 } from '../validators/partner.validators.js';
+import { ConflictError, createPartner } from '../data/store.js';
 
 const router = Router();
 
@@ -39,7 +40,7 @@ router.post('/validate-step', async (req, res, next) => {
 });
 
 // Validação completa no envio final, mesmo que o cliente contorne as etapas.
-router.post('/register', partnerRegistrationValidators, (req, res) => {
+router.post('/register', partnerRegistrationValidators, (req, res, next) => {
   const result = validationResult(req);
 
   if (!result.isEmpty()) {
@@ -49,9 +50,20 @@ router.post('/register', partnerRegistrationValidators, (req, res) => {
     });
   }
 
-  // Entrega acadêmica: os dados são validados, mas não são armazenados.
+  // O cadastro entra no painel administrativo como "pendente" (armazenamento em memória).
+  const { aceiteTermos, ...data } = matchedData(req, { locations: ['body'], includeOptionals: true });
+
+  try {
+    createPartner({ ...data, status: 'pendente' });
+  } catch (error) {
+    if (error instanceof ConflictError) {
+      return res.status(409).json({ message: error.message });
+    }
+    return next(error);
+  }
+
   return res.status(200).json({
-    message: 'Dados do parceiro validados com sucesso. Nenhum cadastro foi armazenado.',
+    message: 'Cadastro de parceiro recebido com sucesso.',
   });
 });
 

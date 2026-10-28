@@ -94,7 +94,7 @@ const step3Validators = [body('modalidades')
     .isIn(MODALITIES).withMessage('Uma modalidade informada é inválida.'),
 ];
 
-const step4Validators = [requiredText('responsavel', 'Nome do responsável', 120),
+const contactValidators = [requiredText('responsavel', 'Nome do responsável', 120),
   body('telefone')
     .isString().withMessage('Informe um telefone válido.')
     .bail()
@@ -129,10 +129,13 @@ const step4Validators = [requiredText('responsavel', 'Nome do responsável', 120
     .trim()
     .matches(/^@?[A-Za-z0-9._]{1,30}$/)
     .withMessage('Informe apenas o usuário do Instagram, por exemplo @academia.'),
-  body('aceiteTermos')
-    .custom((value) => value === true)
-    .withMessage('É necessário aceitar os termos de parceria.'),
 ];
+
+const termsValidator = body('aceiteTermos')
+  .custom((value) => value === true)
+  .withMessage('É necessário aceitar os termos de parceria.');
+
+const step4Validators = [...contactValidators, termsValidator];
 
 export const partnerStepValidators = {
   1: step1Validators,
@@ -148,3 +151,14 @@ export const partnerRegistrationValidators = [
   ...step3Validators,
   ...step4Validators,
 ];
+
+// Dados do parceiro sem o aceite de termos: usados pelo painel administrativo,
+// onde quem cadastra é a equipe VITTA e não o próprio estabelecimento.
+export const partnerDataValidators = [
+  ...step1Validators,
+  ...step2Validators,
+  ...step3Validators,
+  ...contactValidators,
+];
+
+export { digitsOnly, CATEGORIES, BRAZIL_UFS, MODALITIES };
