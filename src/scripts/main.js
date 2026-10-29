@@ -1,4 +1,4 @@
-import { getSession } from './session.js';
+import { getSession, isAdmin } from './session.js';
 
 const siteHeader = document.querySelector('.site-header');
 const menuButton = document.querySelector('.site-header__menu-button');
@@ -30,6 +30,11 @@ const applySessionUi = () => {
     const initial = session.name?.trim().charAt(0).toUpperCase() || '?';
     document.querySelectorAll('[data-session-avatar]').forEach((el) => {
       el.textContent = initial;
+    });
+
+    const accountPage = isAdmin(session) ? 'admin.html' : 'minha-vitta.html';
+    document.querySelectorAll('[data-session="logged-in"]').forEach((el) => {
+      el.href = accountPage;
     });
   }
 };

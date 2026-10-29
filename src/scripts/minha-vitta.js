@@ -1,4 +1,4 @@
-import { getSession, clearSession } from './session.js';
+import { getSession, clearSession, isAdmin } from './session.js';
 
 /* ---------------------------------------------------------------- */
 /* Sessão: exige login                                                */
@@ -8,6 +8,8 @@ const session = getSession();
 
 if (!session) {
   window.location.href = 'entrar.html';
+} else if (isAdmin(session)) {
+  window.location.replace('admin.html');
 }
 
 const currentPlan = session?.plan || 'black';

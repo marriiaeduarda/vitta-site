@@ -1,4 +1,4 @@
-import { setSession } from './session.js';
+import { setSession, isAdmin } from './session.js';
 
 const forms = document.querySelectorAll('[data-auth-form]');
 const loginForm = document.querySelector('[data-auth="login-form"]');
@@ -101,6 +101,11 @@ loginForm?.addEventListener('submit', async (event) => {
     const normalizedEmail = email.toLowerCase();
     const name = normalizedEmail.split('@')[0];
     setSession({ name, email: normalizedEmail, plan: null });
+
+    if (isAdmin({ email: normalizedEmail })) {
+      window.location.href = 'admin.html';
+      return;
+    }
 
     redirectAfterAuth(false);
   } catch {

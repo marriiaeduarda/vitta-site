@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Administração · Vitta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/minha-vitta.css">
+  <link rel="stylesheet" href="../styles/admin.css">
+</head>
+<body>
+  <div class="dashboard">
+    <div class="background__grid" aria-hidden="true"></div>
+
+    <header class="dashboard__topbar">
+      <a class="dashboard__logo" href="home.html" aria-label="Vitta">
+        <img class="dashboard__logo-image" src="../../public/assets/icons/logo.svg" alt="" aria-hidden="true">
+      </a>
+
+      <div class="dashboard__topbar-actions">
+        <span class="dashboard__plan-badge">Admin</span>
+
+        <span class="dashboard__avatar" data-admin="avatar-initial"></span>
+        <span class="dashboard__user-name" data-admin="user-name"></span>
+
+        <button type="button" class="dashboard__logout" data-admin="logout">Sair</button>
+      </div>
+    </header>
+
+    <div class="dashboard__body">
+      <nav class="dashboard__sidebar" aria-label="Menu administrativo">
+        <ul class="dashboard__nav">
+          <li>
+            <button type="button" class="dashboard__nav-item is-active" data-goto-panel="users">
+              <img src="../../public/assets/icons/mao-com-estrelas.svg" alt="" aria-hidden="true">
+              Usuários
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dashboard__nav-item" data-goto-panel="partners">
+              <img src="../../public/assets/icons/buscar.svg" alt="" aria-hidden="true">
+              Parceiros
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dashboard__nav-item" data-goto-panel="plans">
+              <img src="../../public/assets/icons/estrela.svg" alt="" aria-hidden="true">
+              Planos
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <main class="dashboard__content">
+
+        <!-- Painel: Usuários -->
+        <section class="dashboard-panel" data-panel="users" aria-labelledby="admin-users-title">
+          <h1 id="admin-users-title" class="dashboard-panel__title">Usuários</h1>
+          <div data-admin="users-content"></div>
+        </section>
+
+        <!-- Painel: Parceiros -->
+        <section class="dashboard-panel" data-panel="partners" aria-labelledby="admin-partners-title" hidden>
+          <h1 id="admin-partners-title" class="dashboard-panel__title">Parceiros</h1>
+          <div data-admin="partners-content"></div>
+        </section>
+
+        <!-- Painel: Planos -->
+        <section class="dashboard-panel" data-panel="plans" aria-labelledby="admin-plans-title" hidden>
+          <h1 id="admin-plans-title" class="dashboard-panel__title">Planos</h1>
+          <div data-admin="plans-content"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal de formulário (adicionar/editar). O conteúdo dos campos é injetado pelo JS. -->
+  <dialog class="admin-dialog" data-admin="form-dialog" aria-labelledby="admin-form-title">
+    <form class="admin-dialog__form" data-admin="form" novalidate>
+      <h2 id="admin-form-title" class="admin-dialog__title" data-admin="form-title"></h2>
+
+      <div class="admin-dialog__body" data-admin="form-body"></div>
+
+      <p class="admin-dialog__error" data-admin="form-error" role="alert" hidden></p>
+
+      <div class="admin-dialog__actions">
+        <button type="button" class="button button--secondary" data-admin="form-cancel">Cancelar</button>
+        <button type="submit" class="button button--primary" data-admin="form-submit">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Modal de confirmação (remover) -->
+  <dialog class="admin-dialog admin-dialog--confirm" data-admin="confirm-dialog" aria-labelledby="admin-confirm-title" aria-describedby="admin-confirm-message">
+    <div class="admin-dialog__form">
+      <h2 id="admin-confirm-title" class="admin-dialog__title" data-admin="confirm-title"></h2>
+      <p id="admin-confirm-message" class="admin-dialog__message" data-admin="confirm-message"></p>
+
+      <p class="admin-dialog__error" data-admin="confirm-error" role="alert" hidden></p>
+
+      <div class="admin-dialog__actions">
+        <button type="button" class="button button--secondary" data-admin="confirm-cancel">Cancelar</button>
+        <button type="button" class="button button--primary" data-admin="confirm-accept">Remover</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script type="module" src="../scripts/admin.js"></script>
+</body>
+</html>

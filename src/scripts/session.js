@@ -6,6 +6,10 @@
 
 const STORAGE_KEY = 'vitta_session';
 
+// E-mail que dá acesso à área administrativa (simulado: não há senha nem token;
+// a API confere o mesmo e-mail, veja server/middleware/require-admin.js).
+export const ADMIN_EMAIL = 'admin@vitta.com';
+
 export function getSession() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -30,4 +34,8 @@ export function clearSession() {
 
 export function isLoggedIn() {
   return getSession() !== null;
+}
+
+export function isAdmin(session = getSession()) {
+  return session?.email?.toLowerCase() === ADMIN_EMAIL;
 }
