@@ -503,7 +503,7 @@
 
 @media (max-width: 800px) {
   .checkout__main {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .checkout-summary {
@@ -518,8 +518,22 @@
     padding: 16px 20px;
   }
 
-  .checkout__steps span:not(.checkout__step-circle) {
-    display: none;
+  /* Só os círculos numerados; o nome da etapa segue disponível para leitores de tela. */
+  .checkout__step-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .checkout__main {
+    padding: 0 16px 64px;
+  }
+
+  .checkout__form {
+    padding: 24px 20px;
   }
 
   .plan-grid {
@@ -536,5 +550,15 @@
 
   .payment-tabs {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 400px) {
+  .checkout-step__actions--split {
+    gap: 12px;
+  }
+
+  .checkout-step__actions button {
+    white-space: normal;
+    text-align: center;
   }
 }

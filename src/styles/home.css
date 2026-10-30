@@ -151,7 +151,7 @@ body.menu-open {
   overflow: hidden;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 959px) {
   .site-header {
     display: flex;
     justify-content: space-between;

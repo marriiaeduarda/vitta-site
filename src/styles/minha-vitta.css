@@ -637,6 +637,17 @@
   }
 }
 
+@media (max-width: 380px) {
+  .dashboard__sidebar {
+    padding: 8px 4px;
+  }
+
+  .dashboard__nav-item {
+    padding: 6px 4px;
+    font-size: 10px;
+  }
+}
+
 @media (max-width: 600px) {
   .dashboard__topbar {
     padding: 14px 20px;

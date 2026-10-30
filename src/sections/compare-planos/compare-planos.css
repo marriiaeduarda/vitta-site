@@ -19,6 +19,7 @@
 }
 
 .compare-planos__scroll {
+  position: relative;
   overflow-x: auto;
   border: 1px solid var(--color-border);
   border-radius: 20px;
