@@ -1,4 +1,3 @@
-import { GOOGLE_MAPS_API_KEY } from './config.js';
 const ESTABELECIMENTOS = [
   // Barueri
   { id: 1, nome: 'Academia Xnadú', categoria: 'academia', cidade: 'Barueri', parceiro: true, lat: -23.5105, lng: -46.8763 },
@@ -53,18 +52,30 @@ const MAP_STYLE = [
 
 const GOOGLE_MAPS_CALLBACK_NAME = 'initRedeParceirosMap';
 
+/** Busca no servidor a chave do Google Maps (variável de ambiente GOOGLE_MAPS_API_KEY). */
+async function fetchGoogleMapsApiKey() {
+  const response = await fetch('/api/config');
+
+  if (!response.ok) {
+    throw new Error('A chave do Google Maps não está configurada no servidor.');
+  }
+
+  const { googleMapsApiKey } = await response.json();
+  return googleMapsApiKey;
+}
+
 /** Injeta o SDK do Google Maps só quando esta seção existe. */
-function loadGoogleMapsScript() {
+async function loadGoogleMapsScript() {
+  if (window.google?.maps) return;
+
+  const apiKey = await fetchGoogleMapsApiKey();
+
   return new Promise((resolve, reject) => {
-    if (window.google?.maps) {
-      resolve();
-      return;
-    }
 
     window[GOOGLE_MAPS_CALLBACK_NAME] = () => resolve();
 
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&callback=${GOOGLE_MAPS_CALLBACK_NAME}&loading=async`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&callback=${GOOGLE_MAPS_CALLBACK_NAME}&loading=async`;
     script.async = true;
     script.defer = true;
     script.onerror = () => reject(new Error('Não foi possível carregar o Google Maps.'));

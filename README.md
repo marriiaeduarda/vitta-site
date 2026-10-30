@@ -28,7 +28,16 @@ npm install
 npm start
 ```
 
+Para o mapa da rede de parceiros aparecer, crie um arquivo `.env` (copie o `.env.example`) com a chave do Google Maps e rode `npm run start:local` (Node 20.6 ou mais novo). Sem a chave, o site funciona e o mapa mostra uma mensagem de erro.
+
 Acesse http://localhost:3000. Para conferir o servidor: http://localhost:3000/api/health.
+
+## Chave do Google Maps
+
+A chave não fica no código: o servidor a lê da variável de ambiente `GOOGLE_MAPS_API_KEY` e o front-end a busca em `/api/config`.
+
+- **Render:** serviço > Environment > adicionar `GOOGLE_MAPS_API_KEY` e salvar (o Render faz novo deploy).
+- **Google Cloud:** a chave sempre fica visível no navegador, então restrinja-a em Credenciais: referenciadores HTTP (`https://vitta-site-3sal.onrender.com/*`) e apenas a Maps JavaScript API. Configure também um alerta de orçamento.
 
 ## Estrutura
 
@@ -45,4 +54,4 @@ public/assets/   ícones e imagens
 ## Observações
 
 - Os dados do painel administrativo ficam em memória: começam de uma lista simulada e voltam ao início sempre que o servidor reinicia.
-- O login é simulado (qualquer e-mail e senha válidos entram) e o acesso ao painel admin é conferido só pelo e-mail.
+- O login é simulado (qualquer e-mail e senha válidos entram) e o acesso ao painel admin é conferido só pelo e-mail. Para uso real, é preciso trocar por autenticação de verdade (senha com hash e sessão ou token no servidor).
